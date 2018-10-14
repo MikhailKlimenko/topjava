@@ -1,0 +1,7 @@
+*.patch
+.idea
+*.iml
+*.iws
+target/
+log/
+out
