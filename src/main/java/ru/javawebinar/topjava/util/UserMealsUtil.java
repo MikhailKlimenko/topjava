@@ -51,7 +51,7 @@ public class UserMealsUtil {
         List<UserMealWithExceed> mealWithExceeds = new ArrayList<>();
         Map<LocalDate, Integer> maps = new HashMap<>();
         for (UserMeal meal : mealList) {
-            maps.merge(meal.getLocalDate(), meal.getCalories(), (a, b) -> a + b);
+            maps.merge(meal.getLocalDate(), meal.getCalories(), Integer::sum);
         }
         for (UserMeal meal : mealList) {
             if (TimeUtil.isBetween(meal.getDateTime().toLocalTime(), startTime, endTime)) {
@@ -59,5 +59,9 @@ public class UserMealsUtil {
             }
         }
         return mealWithExceeds;
+    }
+
+    private static Integer apply(Integer a, Integer b) {
+        return a + b;
     }
 }
