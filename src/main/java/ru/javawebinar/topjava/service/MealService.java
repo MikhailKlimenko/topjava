@@ -8,9 +8,9 @@ public interface MealService {
 
     Meal save(int userId, Meal meal);
 
-    void delete(int userId, int id);
+    void delete(int userId, int mealId);
 
-    Meal get(int userId, int id);
+    Meal get(int userId, int mealId);
 
     List<Meal> getAll(int userId);
 

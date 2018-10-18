@@ -10,9 +10,9 @@ public interface UserService {
 
     User create(User user);
 
-    void delete(int id) throws NotFoundException;
+    void delete(int userId) throws NotFoundException;
 
-    User get(int id) throws NotFoundException;
+    User get(int userId) throws NotFoundException;
 
     User getByEmail(String email) throws NotFoundException;
 

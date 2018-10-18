@@ -1,6 +1,7 @@
 package ru.javawebinar.topjava.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
@@ -17,8 +18,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     @Autowired
-    public UserServiceImpl(UserRepository repositoryUser) {
-        this.repository = repositoryUser;
+    public UserServiceImpl(UserRepository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -27,13 +28,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(int id) throws NotFoundException {
-        checkNotFoundWithId(repository.delete(id), id);
+    public void delete(int userId) throws NotFoundException {
+        checkNotFoundWithId(repository.delete(userId), userId);
     }
 
     @Override
-    public User get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.get(id), id);
+    public User get(int userId) throws NotFoundException {
+        return checkNotFoundWithId(repository.get(userId), userId);
     }
 
     @Override
