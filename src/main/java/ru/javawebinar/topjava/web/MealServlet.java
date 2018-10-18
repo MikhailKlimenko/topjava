@@ -28,7 +28,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Objects;
 
-//@Component
 public class MealServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(MealServlet.class);
 
@@ -37,6 +36,8 @@ public class MealServlet extends HttpServlet {
 
     {
         MealsUtil.MEALS.forEach(m -> mealRestController.save(m));
+        MealsUtil.MEALS.forEach(m -> mealRestController.saveUser2(m));
+
     }
 
 
@@ -70,6 +71,18 @@ public class MealServlet extends HttpServlet {
                 log.info("Delete {}", id);
                 mealRestController.delete(id);
                 response.sendRedirect("meals");
+                break;
+            case "date":
+                log.debug("date");
+                request.setAttribute("meals",
+                        mealRestController.getDateAll());
+                request.getRequestDispatcher("/meals.jsp").forward(request, response);
+                break;
+            case "time":
+                log.debug("time");
+                request.setAttribute("meals",
+                        mealRestController.getTimeAll());
+                request.getRequestDispatcher("/meals.jsp").forward(request, response);
                 break;
             case "create":
             case "update":
