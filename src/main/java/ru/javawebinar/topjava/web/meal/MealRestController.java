@@ -14,9 +14,9 @@ public class MealRestController {
 
     private final MealService service;
 
-    {
-        MealsUtil.MEALS.forEach(this::save);
-    }
+//    {
+//        MealsUtil.MEALS.forEach(this::save);
+//    }
 
     @Autowired
     public MealRestController(MealService service) {
