@@ -3,7 +3,6 @@ package ru.javawebinar.topjava.web;
 import org.junit.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.javawebinar.topjava.UserTestData;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepositoryImpl;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
@@ -12,7 +11,7 @@ import ru.javawebinar.topjava.web.user.AdminRestController;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static ru.javawebinar.topjava.UserTestData.ADMIN;
+import static ru.javawebinar.topjava.web.UserTestData.ADMIN;
 
 public class InMemoryAdminRestControllerTest {
     private static ConfigurableApplicationContext appCtx;
