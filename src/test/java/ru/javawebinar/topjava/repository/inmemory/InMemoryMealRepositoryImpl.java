@@ -9,8 +9,6 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 import ru.javawebinar.topjava.util.Util;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Collections;
@@ -50,16 +48,6 @@ public class InMemoryMealRepositoryImpl implements MealRepository {
             return meal;
         }
         return meals.computeIfPresent(meal.getId(), (id, oldMeal) -> meal);
-    }
-
-    @PostConstruct
-    public void postConstruct() {
-        log.info("+++ PostConstruct");
-    }
-
-    @PreDestroy
-    public void preDestroy() {
-        log.info("+++ PreDestroy");
     }
 
     @Override
