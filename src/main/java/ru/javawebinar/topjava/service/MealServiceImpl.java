@@ -1,5 +1,7 @@
 package ru.javawebinar.topjava.service;
 
+import org.postgresql.util.PSQLException;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.Meal;
@@ -8,10 +10,13 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.slf4j.LoggerFactory.getLogger;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class MealServiceImpl implements MealService {
+
+    private static final Logger log = getLogger(MealServiceImpl.class);
 
     private final MealRepository repository;
 
@@ -42,11 +47,20 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public void update(Meal meal, int userId) {
+        try {
         checkNotFoundWithId(repository.save(meal, userId), meal.getId());
+        } catch (Exception e) {
+            log.error("Error update meal!");
+        }
     }
 
     @Override
     public Meal create(Meal meal, int userId) {
-        return repository.save(meal, userId);
+        try {
+            return repository.save(meal, userId);
+        } catch (Exception e) {
+            log.error("Error update meal!");
+            return null;
+        }
     }
 }
