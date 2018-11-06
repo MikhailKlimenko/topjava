@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.repository.jdbc;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,7 +36,7 @@ public class JdbcMealRepositoryImpl implements MealRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;}
 
     @Override
-    public Meal save(Meal meal, int userId) {
+    public Meal save(Meal meal, int userId) throws PSQLException {
         MapSqlParameterSource map = new MapSqlParameterSource()
                 .addValue("id", meal.getId())
                 .addValue("user_id", userId)
@@ -50,7 +51,8 @@ public class JdbcMealRepositoryImpl implements MealRepository {
                 "UPDATE meals SET date_time=:date_time, description=:description, calories=:calories WHERE id=:id", map) == 0) {
             return null;
         }
-        return meal;    }
+        return meal;
+    }
 
     @Override
     public boolean delete(int id, int userId) {
