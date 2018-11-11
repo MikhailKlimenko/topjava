@@ -33,6 +33,9 @@ public class MealServiceTest {
     @Autowired
     private MealService service;
 
+//    @Rule
+//    public SimpleRule rule = new SimpleRule();
+
     @Test
     public void delete() throws Exception {
         service.delete(MEAL1_ID, USER_ID);

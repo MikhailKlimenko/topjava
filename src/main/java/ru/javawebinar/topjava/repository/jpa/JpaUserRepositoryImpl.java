@@ -22,7 +22,6 @@ public class JpaUserRepositoryImpl implements UserRepository {
         return sessionFactory.getCurrentSession();
     }
 */
-
     @PersistenceContext
     private EntityManager em;
 
